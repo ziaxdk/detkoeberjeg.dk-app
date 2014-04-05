@@ -1,9 +1,9 @@
 angular.module('detkoeberjeg.controllers', ['detkoeberjeg.services'])
 
 .controller('LoginCtrl', function($scope, $state, User) {
-  if (User.get()) {
-    $state.go('app.current');
-  }
+  // if (User.get()) {
+  //   $state.go('app.current');
+  // }
 
   $scope.user = {};
   $scope.signIn = function (user) {
