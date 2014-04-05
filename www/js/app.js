@@ -51,3 +51,6 @@ angular.module('detkoeberjeg', ['ionic', 'detkoeberjeg.controllers', 'detkoeberj
   $urlRouterProvider.otherwise('/login');
 });
 
+document.addEventListener('deviceready', function () {
+  angular.bootstrap(document, [ 'detkoeberjeg' ]);
+}, false);
