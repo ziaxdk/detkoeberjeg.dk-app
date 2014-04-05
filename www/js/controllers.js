@@ -1,12 +1,14 @@
 angular.module('detkoeberjeg.controllers', ['detkoeberjeg.services'])
 
-.controller('LoginCtrl', function($rootScope, $scope, $state, User) {
-    $state.go('app.current');
-  
-  // $rootScope.user = User.get();
-  // if ($rootScope.user) {
-  //   $state.go('app.current');
-  // }
+.controller('LoginCtrl', function($rootScope, $scope, $state, $timout, User) {
+  $rootScope.user = User.get();
+  if ($rootScope.user) {
+    $timout(function() {
+      alert('redir');
+      $state.go('app.current');
+    }, 2000);
+    return;
+  }
 
   $scope.user = {};
   $scope.signIn = function (user) {
