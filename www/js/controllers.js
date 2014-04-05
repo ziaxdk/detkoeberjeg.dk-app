@@ -1,10 +1,15 @@
-angular.module('starter.controllers', [])
+angular.module('detkoeberjeg.controllers', ['detkoeberjeg.services'])
 
-.controller('LoginCtrl', function($scope, $state) {
+.controller('LoginCtrl', function($scope, $state, User) {
+  if (User.get()) {
+    $state.go('app.current');
+  }
+
   $scope.user = {};
   $scope.signIn = function (user) {
     // console.log(user, $scope.user, $scope);
     if (user.email === '1' && user.password === '2') {
+      User.store({ id: '1', email: '1', name: 'ziaxdk' });
       $state.go('app.current');
     }
   };
@@ -43,5 +48,11 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('AppCtrl', function($scope) {
+.controller('AppCtrl', function($scope, User) {
+  $scope.user = User.get();
+})
+
+.controller('LogoutCtrl', function($scope, $state, User) {
+  User.remove();
+  $state.go('login');
 });

@@ -12,6 +12,10 @@ app.use(express.session({ secret: 'keyboard like ziax dash', key: 'm.ziax.dk' })
 app.use(express.static(__dirname + "/www"));
 app.set('base', '/www');
 
+app.get('/test', function(req, res) {
+  res.send('ok213');
+});
+
 app.configure('development', function () {
   console.log("configure development");
 });
@@ -24,3 +28,5 @@ app.configure('production', function () {
 server.listen(port, function () {
   console.log("Running on " + port);
 });
+
+

@@ -11,5 +11,12 @@
   "license": "ISC",
   "dependencies": {
     "express": "^3.5.1"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.4",
+    "grunt-weinre": "0.0.2",
+    "grunt-concurrent": "^0.5.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-express-server": "^0.4.13"
   }
 }
