@@ -1,0 +1,54 @@
+<ion-view title="Aktuel">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-content class="has-header">
+    <!-- <ul class="list">
+      <li class="item" ng-repeat="item in items">{{item.count}} {{item.text}}</li>
+    </ul> -->
+    <ion-list>
+      <ion-item ng-repeat="item in items" item="item" ng-click="tap(item)">{{item.count}} {{item.unit}} {{item.text}}</ion-item>
+    </ion-list>
+  </ion-content>
+
+  <ion-footer-bar align-title="left" class="bar-positive">
+    <div class="buttons">
+      <button class="button icon-left ion-plus-circled" ng-click="modalNewLine.show()"></button>
+    </div>
+    <h1 class="title">{{items.length}} varer</h1>
+  </ion-footer-bar>
+
+</ion-view>
+
+
+<script id="current-new-line.html" type="text/ng-template">
+  <div class="modal" id="modal">
+    <!-- <ion-header-bar title="My Modal Title">Ny</ion-header-bar> -->
+    <ion-content>
+      <div class="list">
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Antal</span>
+          <input type="text" ng-model="newline.count">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Enhed</span>
+          <input type="text" ng-model="newline.unit">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Tekst</span>
+          <input type="text" ng-model="newline.text">
+        </label>
+      </div>
+    </ion-content>
+    <ion-footer-bar align-title="left" class="bar-positive">
+      <div class="buttons">
+        <button class="button" ng-click="createNewLine(newline)">Opret</button>
+      </div>
+      <h1 class="title"></h1>
+      <div class="buttons">
+        <button class="button" ng-click="clearNewLine(newline)">Ryd</button>
+        <button class="button" ng-click="modalNewLine.hide()">Luk</button>
+      </div>
+    </ion-footer-bar>
+  </div>
+</script>
