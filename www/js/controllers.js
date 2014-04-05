@@ -1,7 +1,8 @@
 angular.module('detkoeberjeg.controllers', ['detkoeberjeg.services'])
 
-.controller('LoginCtrl', function($scope, $state, User) {
-  if (User.get()) {
+.controller('LoginCtrl', function($rootScope, $scope, $state, User) {
+  $rootScope.user = User.get();
+  if ($rootScope.user) {
     $state.go('app.current');
   }
 
@@ -48,8 +49,7 @@ angular.module('detkoeberjeg.controllers', ['detkoeberjeg.services'])
 
 })
 
-.controller('AppCtrl', function($scope, User) {
-  $scope.user = User.get();
+.controller('AppCtrl', function($scope) {
 })
 
 .controller('LogoutCtrl', function($scope, $state, User) {
