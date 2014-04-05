@@ -1,10 +1,12 @@
 angular.module('detkoeberjeg.controllers', ['detkoeberjeg.services'])
 
 .controller('LoginCtrl', function($rootScope, $scope, $state, User) {
-  $rootScope.user = User.get();
-  if ($rootScope.user) {
     $state.go('app.current');
-  }
+  
+  // $rootScope.user = User.get();
+  // if ($rootScope.user) {
+  //   $state.go('app.current');
+  // }
 
   $scope.user = {};
   $scope.signIn = function (user) {
@@ -53,6 +55,7 @@ angular.module('detkoeberjeg.controllers', ['detkoeberjeg.services'])
 })
 
 .controller('LogoutCtrl', function($scope, $state, User) {
+  console.log('Logout');
   User.remove();
   $state.go('login');
 });
