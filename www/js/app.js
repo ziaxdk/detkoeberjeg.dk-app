@@ -1,14 +1,43 @@
 angular.module('detkoeberjeg', ['ionic', 'detkoeberjeg.controllers', 'detkoeberjeg.services'])
 
-.run(function($ionicPlatform, $rootScope, User) {
-  $ionicPlatform.ready(function() {
-    if(window.StatusBar) {
-      StatusBar.styleDefault();
-    }
-  });
+.run(function($ionicPlatform, $rootScope, $state, User) {
+  function out() {
+    console.log(arguments);
+  }
+
+  // $ionicPlatform.ready(function() {
+  //   if(window.StatusBar) {
+  //     StatusBar.styleDefault();
+  //   }
+  // });
 
   $rootScope.user = User.get();
-  console.log('run: User', $rootScope.user);
+  console.log('run: user', $rootScope.user);
+  $rootScope.$on('$stateChangeStart', function(evt, toState, toParams, fromstate, fromParams) {
+    console.log('$stateChangeStart', toState);
+
+    if ($rootScope.user) {
+      if (!toState.data || !toState.data.protected) {
+        console.log('run: logged in');
+        evt.preventDefault();
+        $state.go('app.current', {}, { notify: false }).then(out, out);
+      }
+    }
+
+    // if ($rootScope.user && (!to.data || !to.data.protected)) {
+    //   evt.preventDefault();
+    //   $state.go('app.current', {}, { notify: false });
+    // }
+    // else {
+    // }
+    
+  });
+
+
+  // if ($rootScope.user) {
+  //   console.log('run: User', $rootScope.user);
+  //   $state.go('app.current', {}, { notify: false }).then(out, out);
+  // }
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -16,7 +45,6 @@ angular.module('detkoeberjeg', ['ionic', 'detkoeberjeg.controllers', 'detkoeberj
 
     .state('login', {
       url: '/login',
-      // abstract: true,
       templateUrl: "tmpl/login.html",
       controller: 'LoginCtrl'
     })
@@ -27,6 +55,7 @@ angular.module('detkoeberjeg', ['ionic', 'detkoeberjeg.controllers', 'detkoeberj
     })
 
     .state('app', {
+      data: { protected: true },
       url: "/app",
       abstract: true,
       templateUrl: "tmpl/menu.html",
@@ -54,6 +83,6 @@ angular.module('detkoeberjeg', ['ionic', 'detkoeberjeg.controllers', 'detkoeberj
   $urlRouterProvider.otherwise('/login');
 });
 
-document.addEventListener('deviceready', function () {
-  angular.bootstrap(document, [ 'detkoeberjeg' ]);
-}, false);
+// document.addEventListener('deviceready', function () {
+//   angular.bootstrap(document.body, [ 'detkoeberjeg' ]);
+// }, false);
