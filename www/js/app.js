@@ -8,6 +8,7 @@ angular.module('detkoeberjeg', ['ionic', 'detkoeberjeg.controllers', 'detkoeberj
   });
 
   $rootScope.user = User.get();
+  console.log('run: User', $rootScope.user);
 })
 
 .config(function($stateProvider, $urlRouterProvider) {

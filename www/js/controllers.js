@@ -1,9 +1,16 @@
 angular.module('detkoeberjeg.controllers', ['detkoeberjeg.services'])
 
-.controller('LoginCtrl', function($rootScope, $scope, $location, $state, $timeout, User) {
+.controller('LoginCtrl', function($rootScope, $scope, $location, $state, $ionicViewService, $timeout, User) {
+  // console.log($state, $ionicViewService);
   if ($rootScope.user) {
     console.log('user', $rootScope.user);
-    $location.url('/app/current');
+    try {
+      $state.go('app.current');
+    }
+    catch (err) {
+      alert(err);
+
+    }
     return;
   }
 
