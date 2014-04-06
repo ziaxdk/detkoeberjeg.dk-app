@@ -1,29 +1,28 @@
 angular.module('detkoeberjeg.controllers', ['detkoeberjeg.services'])
 
 .controller('LoginCtrl', function($rootScope, $scope, $location, $state, $ionicViewService, $timeout, User) {
-  // console.log($state, $ionicViewService);
-  if ($rootScope.user) {
-    console.log('user', $rootScope.user);
-    try {
-      $state.go('app.current');
-    }
-    catch (err) {
-      alert(err);
+  $state.go('app.current');
+  // // console.log($state, $ionicViewService);
+  // if ($rootScope.user) {
+  //   console.log('user', $rootScope.user);
+  //   try {
+  //     $state.go('app.current');
+  //   }
+  //   catch (err) {
+  //     alert(err);
 
-    }
-    return;
-  }
+  //   }
+  //   return;
+  // }
 
-  $scope.user = {};
-  $scope.signIn = function (user) {
-    // console.log(user, $scope.user, $scope);
-    if (user.email === '1' && user.password === '2') {
-      User.store({ id: '1', email: '1', name: 'ziaxdk' });
-      $state.go('app.current');
-    }
-  };
-
-
+  // $scope.user = {};
+  // $scope.signIn = function (user) {
+  //   // console.log(user, $scope.user, $scope);
+  //   if (user.email === '1' && user.password === '2') {
+  //     User.store({ id: '1', email: '1', name: 'ziaxdk' });
+  //     $state.go('app.current');
+  //   }
+  // };
 })
 
 .controller('CurrentCtrl', function($scope, $ionicModal) {
