@@ -20,7 +20,7 @@ angular.module('detkoeberjeg', ['ionic', 'detkoeberjeg.controllers', 'detkoeberj
       if (!toState.data || !toState.data.protected) {
         console.log('run: logged in');
         evt.preventDefault();
-        $state.go('app.current', {}, { notify: false }).then(out, out);
+        $state.go('app.current', {}, { notify: true }).then(out, out);
       }
     }
 
