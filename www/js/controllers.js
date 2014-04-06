@@ -53,8 +53,9 @@ angular.module('detkoeberjeg.controllers', ['detkoeberjeg.services'])
 .controller('AppCtrl', function($scope) {
 })
 
-.controller('LogoutCtrl', function($scope, $state, User) {
+.controller('LogoutCtrl', function($rootScope, $scope, $state, User) {
   console.log('Logout');
+  delete $rootScope.user;
   User.remove();
   $state.go('login');
 });
