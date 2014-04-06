@@ -1,11 +1,13 @@
 angular.module('detkoeberjeg', ['ionic', 'detkoeberjeg.controllers', 'detkoeberjeg.services'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $rootScope, User) {
   $ionicPlatform.ready(function() {
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
   });
+
+  $rootScope.user = User.get();
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
