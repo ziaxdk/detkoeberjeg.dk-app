@@ -5,7 +5,9 @@ angular.module('detkoeberjeg.controllers', ['detkoeberjeg.services'])
   $scope.signIn = function (user) {
     // console.log(user, $scope.user, $scope);
     if (user.email === 'a' && user.password === 'a') {
-      User.store({ id: '1', email: '1', name: 'ziaxdk' });
+      var user = { id: '1', email: '1', name: 'ziaxdk' };
+      User.store();
+      $rootScope.user = user;
       $state.go('app.current');
     }
   };
