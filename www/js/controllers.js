@@ -5,8 +5,8 @@ angular.module('detkoeberjeg.controllers', ['detkoeberjeg.services'])
   $scope.signIn = function (user) {
     // console.log(user, $scope.user, $scope);
     if (user.email === 'a' && user.password === 'a') {
-      var user = { id: '1', email: '1', name: 'ziaxdk' };
-      User.store();
+      user = { id: '1', email: '1', name: 'ziaxdk' };
+      User.store(user);
       $rootScope.user = user;
       $state.go('app.current');
     }
@@ -14,6 +14,7 @@ angular.module('detkoeberjeg.controllers', ['detkoeberjeg.services'])
 })
 
 .controller('CurrentCtrl', function($scope, $ionicModal) {
+  console.log('CurrentCtrl');
   $ionicModal.fromTemplateUrl('current-new-line.html', {
     scope: $scope,
     focusFirstInput: true,

@@ -1,6 +1,6 @@
 angular.module('detkoeberjeg', ['ionic', 'detkoeberjeg.controllers', 'detkoeberjeg.services'])
 
-.run(function($ionicPlatform, $rootScope, $state, User) {
+.run(function($ionicPlatform, $rootScope, $state, $timeout, User) {
   function out() {
     console.log(arguments);
   }
@@ -13,14 +13,21 @@ angular.module('detkoeberjeg', ['ionic', 'detkoeberjeg.controllers', 'detkoeberj
 
   $rootScope.user = User.get();
   console.log('run: user', $rootScope.user);
+
+  $rootScope.$on('$stateChangeError', function() {
+    console.log('$stateChangeError', arguments);
+  });
+
   $rootScope.$on('$stateChangeStart', function(evt, toState, toParams, fromstate, fromParams) {
     console.log('$stateChangeStart', toState);
 
     if ($rootScope.user) {
       if (!toState.data || !toState.data.protected) {
-        console.log('run: logged in');
+        console.log('run: preventDefault');
         evt.preventDefault();
-        $state.go('app.current', {}, { notify: false }).then(out, out);
+        $timeout(function() {
+          $state.go('app.current', {}, { notify: true }).then(out,out);
+        }, 100);
       }
     }
 
