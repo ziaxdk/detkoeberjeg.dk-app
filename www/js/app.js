@@ -12,40 +12,20 @@ angular.module('detkoeberjeg', ['ionic', 'detkoeberjeg.controllers', 'detkoeberj
   // });
 
   $rootScope.user = User.get();
-  console.log('run: user', $rootScope.user);
 
   $rootScope.$on('$stateChangeError', function() {
     console.log('$stateChangeError', arguments);
   });
 
   $rootScope.$on('$stateChangeStart', function(evt, toState, toParams, fromstate, fromParams) {
-    return;
-    console.log('$stateChangeStart', toState);
-
-    if ($rootScope.user) {
-      if (!toState.data || !toState.data.protected) {
-        console.log('run: preventDefault');
-        evt.preventDefault();
-        $timeout(function() {
-          $state.go('app.current', {}, { notify: true }).then(out,out);
-        }, 50);
-      }
+    if ($rootScope.user && toState.name == 'login') {
+      console.log('$stateChangeStart', toState);
+      // evt.preventDefault();
+      $timeout(function() {
+        $state.go('app.current', {}, { notify: true });
+      }, 50);
     }
-
-    // if ($rootScope.user && (!to.data || !to.data.protected)) {
-    //   evt.preventDefault();
-    //   $state.go('app.current', {}, { notify: false });
-    // }
-    // else {
-    // }
-    
   });
-
-
-  // if ($rootScope.user) {
-  //   console.log('run: User', $rootScope.user);
-  //   $state.go('app.current', {}, { notify: false }).then(out, out);
-  // }
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
