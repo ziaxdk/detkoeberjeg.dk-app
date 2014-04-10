@@ -16,7 +16,8 @@
       <button class="button icon-left ion-plus-circled" ng-click="modalNewLine.show()"></button>
     </div>
     <h1 class="title"><ng-pluralize count="items.length"
-        when="{'one': '1 vare',
+        when="{'0': 'Alle varer i kurven',
+        'one': '1 vare',
         'other': '{} varer'}">
       </ng-pluralize></h1>
   </ion-footer-bar>

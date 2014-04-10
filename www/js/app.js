@@ -28,7 +28,7 @@ angular.module('detkoeberjeg', ['ionic', 'detkoeberjeg.controllers', 'detkoeberj
         evt.preventDefault();
         $timeout(function() {
           $state.go('app.current', {}, { notify: true }).then(out,out);
-        }, 100);
+        }, 50);
       }
     }
 
