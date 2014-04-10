@@ -1,10 +1,10 @@
 angular.module('detkoeberjeg.directives', [])
 
-.directive('zSwipeRight', function($ionicGesture, $parse) {
+.directive('zSwipeRight', function($ionicGesture, $parse, $interpolate) {
   return {
     link: function($scope, $element, $attrs) {
       $ionicGesture.on('swiperight', function(e) {
-        console.log('z-swipe-right', $attrs.zSwipeRight, $parse($attrs.zSwipeRight)($scope));
+        $scope.$apply($attrs.zSwipeRight);
       }, $element);
     }
   };
@@ -14,7 +14,7 @@ angular.module('detkoeberjeg.directives', [])
   return {
     link: function($scope, $element, $attrs) {
       $ionicGesture.on('swipeleft', function(e) {
-        console.log('z-swipe-left', $attrs.zSwipeLeft);
+        $scope.$apply($attrs.zSwipeLeft);
       }, $element);
     }
   };

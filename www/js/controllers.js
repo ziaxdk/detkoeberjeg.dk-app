@@ -39,6 +39,14 @@ angular.module('detkoeberjeg.controllers', ['detkoeberjeg.services'])
     $scope.newline = {};
   };
 
+  $scope.setBought = function(item) {
+    $scope.items = _.reject($scope.items, function(val) { return item.id == val.id; });
+  };
+
+  $scope.transfer = function(item) {
+    console.log('Transferring', item);
+  };
+
   $scope.$on('$destroy', function() {
     $scope.modalNewLine.remove();
   });
