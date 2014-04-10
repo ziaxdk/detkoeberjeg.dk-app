@@ -1,4 +1,4 @@
-angular.module('detkoeberjeg', ['ionic', 'detkoeberjeg.controllers', 'detkoeberjeg.services'])
+angular.module('detkoeberjeg', ['ionic', 'detkoeberjeg.controllers', 'detkoeberjeg.services', 'detkoeberjeg.directives'])
 
 .run(function($ionicPlatform, $rootScope, $state, $timeout, User) {
   function out() {
