@@ -19,6 +19,7 @@ angular.module('detkoeberjeg', ['ionic', 'detkoeberjeg.controllers', 'detkoeberj
   });
 
   $rootScope.$on('$stateChangeStart', function(evt, toState, toParams, fromstate, fromParams) {
+    return;
     console.log('$stateChangeStart', toState);
 
     if ($rootScope.user) {
@@ -58,7 +59,12 @@ angular.module('detkoeberjeg', ['ionic', 'detkoeberjeg.controllers', 'detkoeberj
 
     .state('logout', {
       url: '/logout',
-      controller: 'LogoutCtrl'
+      controller: 'LogoutCtrl',
+      resolve: {
+        logout: function(User) {
+          console.log('resolve', User);
+        }
+      }
     })
 
     .state('app', {

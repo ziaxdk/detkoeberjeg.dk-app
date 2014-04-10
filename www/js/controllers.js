@@ -24,7 +24,8 @@ angular.module('detkoeberjeg.controllers', ['detkoeberjeg.services'])
   });
 
   $scope.newline = {};
-  $scope.items = [{id: '1', count: 2, unit: 'l', text: 'mælk' }, { id: 2, count: 6, unit: 'stk', text: 'æg' }];
+  $scope.items = [{id: '1', count: 2, unit: 'l', text: 'mælk' }];
+  // $scope.items = [{id: '1', count: 2, unit: 'l', text: 'mælk' }, { id: 2, count: 6, unit: 'stk', text: 'æg' }];
 
   $scope.tap = function(line) {
     // $scope.items.remove(line);
@@ -50,7 +51,8 @@ angular.module('detkoeberjeg.controllers', ['detkoeberjeg.services'])
 
 .controller('LogoutCtrl', function($rootScope, $scope, $state, User) {
   console.log('Logout');
-  delete $rootScope.user;
-  User.remove();
-  $state.go('login');
+  // delete $rootScope.user;
+  // // $rootScope.user = null;
+  // User.remove();
+  // $state.go('login');
 });
