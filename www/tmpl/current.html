@@ -4,10 +4,10 @@
   </ion-nav-buttons>
   <ion-content class="has-header">
     <!-- <ul class="list">
-      <li class="item" ng-repeat="item in items">{{item.count}} {{item.text}}</li>
+      <li class="item" z-drag="" ng-repeat="item in items">{{item.count}} {{item.unit}} {{item.text}}</li>
     </ul> -->
     <ion-list>
-      <ion-item ng-repeat="item in items" item="item" ng-click="tap(item)">{{item.count}} {{item.unit}} {{item.text}}</ion-item>
+      <ion-item ng-repeat="item in items" item="item" z-swipe-right="setBought(item)" z-swipe-left="transfer(item)">{{item.count}} {{item.unit}} {{item.text}}</ion-item>
     </ion-list>
   </ion-content>
 
