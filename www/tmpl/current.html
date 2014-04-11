@@ -7,7 +7,7 @@
       <li class="item" z-drag="" ng-repeat="item in items">{{item.count}} {{item.unit}} {{item.text}}</li>
     </ul> -->
     <ion-list>
-      <ion-item ng-repeat="item in items" item="item" z-swipe-right="setBought(item)" z-swipe-left="transfer(item)">{{item.count}} {{item.unit}} {{item.text}}</ion-item>
+      <ion-item ng-repeat="item in currentShoppingList.list track by item.id" item="item" z-swipe-right="setBought(item)" z-swipe-left="transfer(item)">{{item.count}} {{item.unit}} {{item.text}}</ion-item>
     </ion-list>
   </ion-content>
 
@@ -15,7 +15,7 @@
     <div class="buttons">
       <button class="button icon-left ion-plus-circled" ng-click="modalNewLine.show()"></button>
     </div>
-    <h1 class="title"><ng-pluralize count="items.length"
+    <h1 class="title"><ng-pluralize count="currentShoppingList.list.length"
         when="{'0': 'Alle varer i kurven',
         'one': '1 vare',
         'other': '{} varer'}">
@@ -32,25 +32,25 @@
       <div class="list">
         <label class="item item-input item-stacked-label">
           <span class="input-label">Antal</span>
-          <input type="text" ng-model="newline.count">
+          <input type="text" ng-model="newProduct.count">
         </label>
         <label class="item item-input item-stacked-label">
           <span class="input-label">Enhed</span>
-          <input type="text" ng-model="newline.unit">
+          <input type="text" ng-model="newProduct.unit">
         </label>
         <label class="item item-input item-stacked-label">
           <span class="input-label">Tekst</span>
-          <input type="text" ng-model="newline.text">
+          <input type="text" ng-model="newProduct.text">
         </label>
       </div>
     </ion-content>
     <ion-footer-bar align-title="left" class="bar-positive">
       <div class="buttons">
-        <button class="button" ng-click="createNewLine(newline)">Opret</button>
+        <button class="button" ng-click="createNewProduct(newProduct)">Opret</button>
       </div>
       <h1 class="title"></h1>
       <div class="buttons">
-        <button class="button" ng-click="clearNewLine(newline)">Ryd</button>
+        <button class="button" ng-click="clearNewProduct(newProduct)">Ryd</button>
         <button class="button" ng-click="modalNewLine.hide()">Luk</button>
       </div>
     </ion-footer-bar>

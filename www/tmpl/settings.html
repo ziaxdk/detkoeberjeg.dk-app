@@ -1,0 +1,47 @@
+<ion-view title="Indstillinger">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+
+  <ion-content class="has-header">
+    <ul class="list">
+      <li class="item item-divider">
+        Indkøbsseddel
+      </li>
+      <li class="item item-toggle">
+         Slide til venstre
+         <label class="toggle">
+           <input type="checkbox" ng-model="user.settings.slideLeftTransfer">
+           <div class="track">
+             <div class="handle"></div>
+           </div>
+         </label>
+      </li>
+      <li class="item item-toggle">
+         Slide til højre
+         <label class="toggle">
+           <input type="checkbox" ng-model="user.settings.slideRightBuy">
+           <div class="track">
+             <div class="handle"></div>
+           </div>
+         </label>
+      </li>
+      <li class="item item-divider">
+        Ny vare
+      </li>
+      <li class="item item-toggle">
+         Luk vindue efter opret
+         <label class="toggle">
+           <input type="checkbox" ng-model="user.settings.closeWindowNewProduct">
+           <div class="track">
+             <div class="handle"></div>
+           </div>
+         </label>
+      </li>
+    </ul>
+    <button nav-clear class="button button-block button-positive" ng-click="save()">
+      Gem
+    </button>
+  </ion-content>
+
+</ion-view>

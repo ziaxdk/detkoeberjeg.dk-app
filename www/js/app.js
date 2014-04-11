@@ -19,13 +19,31 @@ angular.module('detkoeberjeg', ['ionic', 'detkoeberjeg.controllers', 'detkoeberj
 
   $rootScope.$on('$stateChangeStart', function(evt, toState, toParams, fromstate, fromParams) {
     if ($rootScope.user && toState.name == 'login') {
-      console.log('$stateChangeStart', toState);
+      // console.log('$stateChangeStart', toState);
       // evt.preventDefault();
       $timeout(function() {
         $state.go('app.current', {}, { notify: true });
       }, 1);
+      return;
+    }
+
+    if (!$rootScope.user && "login logout".indexOf($state.current.name) != -1) {
+      $timeout(function() {
+        $state.go('login', {}, { notify: true });
+      }, 1);
+      return;
     }
   });
+
+  Array.prototype.spliceRem = function(cb) {
+    for (var i = this.length - 1; i >= 0; i--) {
+      if (cb(this[i]))
+        this.splice(i, 1);
+      // if (this[i].id == item.id) {
+      //   this.splice(i, 1);
+      // }
+    }
+  };
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -64,11 +82,12 @@ angular.module('detkoeberjeg', ['ionic', 'detkoeberjeg.controllers', 'detkoeberj
         }
       }
     })
-    .state('app.search', {
-      url: "/search",
+    .state('app.settings', {
+      url: "/settings",
       views: {
         'menuContent' :{
-          templateUrl: "tmpl/search.html"
+          templateUrl: "tmpl/settings.html",
+          controller: 'SettingsCtrl'
         }
       }
     });

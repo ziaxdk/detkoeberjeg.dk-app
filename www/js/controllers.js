@@ -5,16 +5,19 @@ angular.module('detkoeberjeg.controllers', ['detkoeberjeg.services'])
   $scope.signIn = function (user) {
     // console.log(user, $scope.user, $scope);
     if (user.email === 'a' && user.password === 'a') {
-      user = { id: '1', email: '1', name: 'ziaxdk' };
-      User.store(user);
-      $rootScope.user = user;
+      var theUser = User.create(user.email, user.password);
+      User.store(theUser);
+      $rootScope.user = theUser;
       $state.go('app.current');
     }
   };
 })
 
-.controller('CurrentCtrl', function($scope, $ionicModal) {
+.controller('CurrentCtrl', function($rootScope, $scope, $ionicModal, ShoppingList) {
   console.log('CurrentCtrl');
+  var shoppingList = ShoppingList.current(),
+      products = shoppingList.list;
+
   $ionicModal.fromTemplateUrl('current-new-line.html', {
     scope: $scope,
     focusFirstInput: true,
@@ -23,29 +26,32 @@ angular.module('detkoeberjeg.controllers', ['detkoeberjeg.services'])
     $scope.modalNewLine = modal;
   });
 
-  $scope.newline = {};
-  $scope.items = [{id: '1', count: 2, unit: 'l', text: 'mælk' }];
-  // $scope.items = [{id: '1', count: 2, unit: 'l', text: 'mælk' }, { id: 2, count: 6, unit: 'stk', text: 'æg' }];
+  $scope.newProduct = {};
+  $scope.currentShoppingList = shoppingList;
 
   $scope.tap = function(line) {
     // $scope.items.remove(line);
   };
 
-  $scope.clearNewLine = function(line) {
-    $scope.newline = {};
+  $scope.clearNewProduct = function() {
+    $scope.newProduct = {};
   };
 
-  $scope.createNewLine = function(line) {
-    $scope.items.push(angular.copy(line));
-    $scope.newline = {};
+  $scope.createNewProduct = function(line) {
+    console.log(line)
+    products.push(angular.copy(line));
+    $scope.newProduct = {};
   };
 
   $scope.setBought = function(item) {
-    $scope.items = _.reject($scope.items, function(val) { return item.id == val.id; });
+    console.log('setBought', item);
+    if ($rootScope.user.settings.slideRightBuy)
+      products.spliceRem(function(val) { return val.id == item.id; });
   };
 
   $scope.transfer = function(item) {
-    console.log('Transferring', item);
+    if ($rootScope.user.settings.slideLeftTransfer)
+      console.log('Transferring', item);
   };
 
   $scope.$on('$destroy', function() {
@@ -63,4 +69,12 @@ angular.module('detkoeberjeg.controllers', ['detkoeberjeg.services'])
   // // $rootScope.user = null;
   User.remove();
   $state.go('login');
+})
+
+.controller('SettingsCtrl', function($rootScope, $scope, User) {
+
+  $scope.save = function() {
+    console.log('save');
+    User.store($rootScope.user);
+  };
 });
