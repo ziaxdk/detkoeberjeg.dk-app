@@ -38,13 +38,13 @@ angular.module('detkoeberjeg.controllers', ['detkoeberjeg.services'])
   };
 
   $scope.createNewProduct = function(line) {
-    console.log(line)
+    // console.log(line)
     products.push(angular.copy(line));
     $scope.newProduct = {};
   };
 
   $scope.setBought = function(item) {
-    console.log('setBought', item);
+    console.log('setBought', item, $rootScope.user.settings.slideRightBuy);
     if ($rootScope.user.settings.slideRightBuy)
       products.spliceRem(function(val) { return val.id == item.id; });
   };
@@ -52,6 +52,10 @@ angular.module('detkoeberjeg.controllers', ['detkoeberjeg.services'])
   $scope.transfer = function(item) {
     if ($rootScope.user.settings.slideLeftTransfer)
       console.log('Transferring', item);
+  };
+
+  $scope.debug = function(evt) {
+    console.log('debug', evt);
   };
 
   $scope.$on('$destroy', function() {

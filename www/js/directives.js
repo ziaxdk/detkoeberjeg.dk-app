@@ -13,4 +13,18 @@
       };
     });
   });
+
+  m.directive('zTouchRelease', function($ionicGesture) {
+    return function($scope, $element, $attrs) {
+      $ionicGesture.on('touch', function(e) {
+        $element.addClass('zTouchRelease');
+      }, $element);
+      $ionicGesture.on('release', function(e) {
+        $element.removeClass('zTouchRelease');
+      }, $element);
+    };
+  });
+
 }());
+
+

@@ -7,7 +7,7 @@
       <li class="item" z-drag="" ng-repeat="item in items">{{item.count}} {{item.unit}} {{item.text}}</li>
     </ul> -->
     <ion-list>
-      <ion-item ng-repeat="item in currentShoppingList.list track by item.id" item="item" z-swipe-right="setBought(item)" z-swipe-left="transfer(item)">{{item.count}} {{item.unit}} {{item.text}}</ion-item>
+      <ion-item ng-repeat="item in currentShoppingList.list track by item.id" item="item" z-touch-release z-swipe-right="setBought(item)" z-swipe-left="transfer(item)">{{item.count}} {{item.unit}} {{item.text}}</ion-item>
     </ion-list>
   </ion-content>
 
